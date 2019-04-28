@@ -14,7 +14,7 @@ protected:
     std::string result;
 
 public:
-    CommentsRemover(std::string source):source(source),currentState(new OutsideState(this)) {}
+    CommentsRemover(std::string source):source(source),currentState(OutsideState::getInstance()) {}
     std::string process();
 
     // void setCommentStartState();

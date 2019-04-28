@@ -17,8 +17,7 @@ void CommentsRemover::setState(State* newState)
 std::string CommentsRemover::process() {
     unsigned pos = 0;
     while(pos < source.length()) {
-        currentState->processNextChar(source[pos], result);
-        pos++;
+        currentState = currentState->processNextChar(source[pos++], result);
     }
     currentState->processInputEnd(result);
     return result;

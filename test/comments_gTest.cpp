@@ -175,13 +175,13 @@ TEST(state_transition, single_line_comment)
     CommentsRemoverMock remover("//t\nint main(){ return 0; }");
     
     int i = 0;
-    remover.currentState->processNextChar(remover.source[i++], remover.result);
-    remover.currentState->processNextChar(remover.source[i++], remover.result);
+    remover.currentState = remover.currentState->processNextChar(remover.source[i++], remover.result);
+    remover.currentState = remover.currentState->processNextChar(remover.source[i++], remover.result);
 
     EXPECT_EQ(typeid(OneLineCommentState), typeid(*remover.currentState));
 
-    remover.currentState->processNextChar(remover.source[i++], remover.result);
-    remover.currentState->processNextChar(remover.source[i++], remover.result);
+    remover.currentState = remover.currentState->processNextChar(remover.source[i++], remover.result);
+    remover.currentState = remover.currentState->processNextChar(remover.source[i++], remover.result);
     EXPECT_EQ(typeid(OutsideState), typeid(*remover.currentState));
 }
 
@@ -190,17 +190,17 @@ TEST(state_transition, block_comment)
     CommentsRemoverMock remover("/*t\n*/");
     
     int i = 0;
-    remover.currentState->processNextChar(remover.source[i++], remover.result);
-    remover.currentState->processNextChar(remover.source[i++], remover.result);
+    remover.currentState = remover.currentState->processNextChar(remover.source[i++], remover.result);
+    remover.currentState = remover.currentState->processNextChar(remover.source[i++], remover.result);
 
     EXPECT_EQ(typeid(BlockCommentState), typeid(*remover.currentState));
 
-    remover.currentState->processNextChar(remover.source[i++], remover.result);
+    remover.currentState = remover.currentState->processNextChar(remover.source[i++], remover.result);
     EXPECT_EQ(typeid(BlockCommentState), typeid(*remover.currentState));
 
-    remover.currentState->processNextChar(remover.source[i++], remover.result);
-    remover.currentState->processNextChar(remover.source[i++], remover.result);
-    remover.currentState->processNextChar(remover.source[i++], remover.result);
+    remover.currentState = remover.currentState->processNextChar(remover.source[i++], remover.result);
+    remover.currentState = remover.currentState->processNextChar(remover.source[i++], remover.result);
+    remover.currentState = remover.currentState->processNextChar(remover.source[i++], remover.result);
     EXPECT_EQ(typeid(OutsideState), typeid(*remover.currentState));
 }
 
@@ -209,19 +209,19 @@ TEST(state_transition, string_literal)
     CommentsRemoverMock remover("\"//t\\\"\";");
     
     int i = 0;
-    remover.currentState->processNextChar(remover.source[i++], remover.result);
+    remover.currentState = remover.currentState->processNextChar(remover.source[i++], remover.result);
     EXPECT_EQ(typeid(StringLiteralState), typeid(*remover.currentState));
     
-    remover.currentState->processNextChar(remover.source[i++], remover.result);
-    remover.currentState->processNextChar(remover.source[i++], remover.result);
+    remover.currentState = remover.currentState->processNextChar(remover.source[i++], remover.result);
+    remover.currentState = remover.currentState->processNextChar(remover.source[i++], remover.result);
     EXPECT_EQ(typeid(StringLiteralState), typeid(*remover.currentState));
 
-    remover.currentState->processNextChar(remover.source[i++], remover.result);
-    remover.currentState->processNextChar(remover.source[i++], remover.result);
-    remover.currentState->processNextChar(remover.source[i++], remover.result);
+    remover.currentState = remover.currentState->processNextChar(remover.source[i++], remover.result);
+    remover.currentState = remover.currentState->processNextChar(remover.source[i++], remover.result);
+    remover.currentState = remover.currentState->processNextChar(remover.source[i++], remover.result);
     EXPECT_EQ(typeid(StringLiteralState), typeid(*remover.currentState));
 
-    remover.currentState->processNextChar(remover.source[i++], remover.result);
+    remover.currentState = remover.currentState->processNextChar(remover.source[i++], remover.result);
     EXPECT_EQ(typeid(OutsideState), typeid(*remover.currentState));
 }
 
