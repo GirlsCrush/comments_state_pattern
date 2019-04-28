@@ -2,6 +2,8 @@
 #include <string>
 #include <queue>
 
+//Here you can see usage of Singelton pattern. It doesnt feet tests though :-)
+
 class CommentsRemover;
 
 class State {

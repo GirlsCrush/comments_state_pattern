@@ -14,12 +14,6 @@ PotentialCommentState * PotentialCommentState::uniqueStateP = nullptr;
 
 PotentialCommentEndState * PotentialCommentEndState::uniqueStateP = nullptr;
 
-// PotentialRawCommentFirstState * PotentialRawCommentFirstState::uniqueStateP = nullptr;
-
-// PotentialRawCommentSecondState * PotentialRawCommentSecondState::uniqueStateP = nullptr;
-
-// PotentialRawCommentEndState * PotentialRawCommentEndState::uniqueStateP = nullptr;
-
 OutsideState::~OutsideState(){
     delete uniqueStateP;
 }
@@ -43,19 +37,6 @@ PotentialCommentState::~PotentialCommentState(){
 PotentialCommentEndState::~PotentialCommentEndState(){
     delete uniqueStateP;
 }
-
-// PotentialRawCommentFirstState::~PotentialRawCommentFirstState(){
-//     delete uniqueStateP;
-// }
-
-
-// PotentialRawCommentSecondState::~PotentialRawCommentSecondState(){
-//     delete uniqueStateP;
-// }
-
-// PotentialRawCommentEndState::~PotentialRawCommentEndState(){
-//     delete uniqueStateP;
-// }
 
 OutsideState* OutsideState::getInstance(){
     if (uniqueStateP == nullptr)
@@ -92,24 +73,6 @@ PotentialCommentEndState* PotentialCommentEndState::getInstance(){
         uniqueStateP = new PotentialCommentEndState();
     return uniqueStateP;
 }
-
-// PotentialRawCommentFirstState* PotentialRawCommentFirstState::getInstance(){
-//     if (uniqueStateP == nullptr)
-//         uniqueStateP = new PotentialRawCommentFirstState();
-//     return uniqueStateP;
-// }
-
-// PotentialRawCommentSecondState* PotentialRawCommentSecondState::getInstance(){
-//     if (uniqueStateP == nullptr)
-//         uniqueStateP = new PotentialRawCommentSecondState();
-//     return uniqueStateP;
-// }
-
-// PotentialRawCommentEndState* PotentialRawCommentEndState::getInstance(){
-//     if (uniqueStateP == nullptr)
-//         uniqueStateP = new PotentialRawCommentEndState();
-//     return uniqueStateP;
-// }
 
 State* OutsideState::processNextChar(char c, std::string &res){
     res.push_back(c);
